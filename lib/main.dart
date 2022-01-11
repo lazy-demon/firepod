@@ -32,38 +32,39 @@ class MyApp extends ConsumerWidget {
     final user = ref.watch(authProvider);
 
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        home: (user is Authenticated)
-            ? const Scaffolding(body: Main())
-            : const Scaffolding(body: Login()),
-        routes: {
-          // can be accesed no matter what roll
-          '/info': (context) => const Scaffolding(body: Info()),
-        },
-        onGenerateRoute: (route) {
-          if (user is Authenticated) {
-            if (route.name == '/settings') {
-              return MaterialPageRoute(
-                builder: (context) => const Scaffolding(body: Settings()),
-              );
-            } else if (route.name == '/profile') {
-              return MaterialPageRoute(
-                builder: (context) => const Profile(),
-              );
-            }
-            // else if (route.name == '/profile') {
-            //   return MaterialPageRoute(
-            //     builder: (context) => const Profile(),
-            //   );
-            // }
-            Navigator.of(context).pushNamed('/');
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: (user is Authenticated)
+          ? const Scaffolding(body: Main())
+          : const Scaffolding(body: Login()),
+      routes: {
+        // can be accesed no matter what roll
+        '/info': (context) => const Scaffolding(body: Info()),
+      },
+      onGenerateRoute: (route) {
+        if (user is Authenticated) {
+          if (route.name == '/settings') {
+            return MaterialPageRoute(
+              builder: (context) => const Scaffolding(body: Settings()),
+            );
+          } else if (route.name == '/profile') {
+            return MaterialPageRoute(
+              builder: (context) => const Profile(),
+            );
           }
+          // else if (route.name == '/profile') {
+          //   return MaterialPageRoute(
+          //     builder: (context) => const Profile(),
+          //   );
+          // }
           Navigator.of(context).pushNamed('/');
-        });
+        }
+        Navigator.of(context).pushNamed('/');
+      },
+    );
   }
 }

@@ -17,13 +17,14 @@ class Scaffolding extends ConsumerWidget {
     final user = ref.watch(authProvider);
 
     return Scaffold(
-        appBar: AppBar(
-          title: (user is Authenticated)
-              ? const Text('APPNAMEHERE')
-              : const Text('Login'),
-          actions: const [Menu()],
-        ),
-        body: body,
-        floatingActionButton: const FAB());
+      appBar: AppBar(
+        title: (user is Authenticated)
+            ? const Text('APPNAMEHERE')
+            : const Text('Login'),
+        actions: const [Menu()],
+      ),
+      body: body,
+      floatingActionButton: const FAB(),
+    );
   }
 }
